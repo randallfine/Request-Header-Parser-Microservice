@@ -6,7 +6,13 @@ const app = express();
 
 app.get("/", (req, res) =>{
     let agent = useragent.lookup(req.headers['user-agent']);
-    let ua = {ip: req.ip, language: locale.Locale.default.normalized, browser: `${agent.family} ${agent.major}`, OS: agent.os.family};
+    let ua = {ip: "", language: locale.Locale.default.normalized, browser: `${agent.family} ${agent.major}`, OS: agent.os.family};
+
+    if(req.ip.substr(0, 7) == "::ffff:"){
+        ua.ip = req.ip.substr(7);
+    } else {
+        ua.ip = req.ip
+    }
 
     res.send(ua);
 });

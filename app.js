@@ -11,4 +11,4 @@ app.get("/", (req, res) =>{
     res.send(ua);
 });
 
-app.listen(3000, () => console.log("app is go!!"))
+app.listen(precess.env.PORT || 3000, () => console.log("app is go!!"))
